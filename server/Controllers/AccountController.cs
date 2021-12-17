@@ -39,7 +39,7 @@ namespace server.Controllers
             return new UserIdAndTokenDto
             {
                 UserId = user.Id,
-                Token = _tokenService.GenerateToken()
+                Token = await _tokenService.GenerateToken(user)
             };
         }
 
@@ -71,6 +71,7 @@ namespace server.Controllers
                 return ValidationProblem();
             }
 
+            await _userManager.AddToRoleAsync(user, "User");
             return StatusCode(201);
         }
     }

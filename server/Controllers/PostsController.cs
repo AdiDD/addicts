@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace server.Controllers
 {
@@ -33,6 +34,7 @@ namespace server.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         public async Task<Post> AddPost(Post post)
         {
             return await _postService.AddAsync(post);

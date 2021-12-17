@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System;
+using Microsoft.AspNetCore.Identity;
 
 namespace server.Data
 {
@@ -18,21 +19,16 @@ namespace server.Data
         public DbSet<Step> Steps { get; set; }
         public DbSet<Guide> Guides { get; set; }
         public DbSet<Badge> Badges { get; set; }
-
-        internal Task SaveChangesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public DbSet<Tag> Tags { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Program>().ToTable("Programs");
-            //modelBuilder.Entity<ApplicationUser>().ToTable("ApplicationsUser");
-            //modelBuilder.Entity<Post>().ToTable("Posts");
-            //modelBuilder.Entity<Steps>().ToTable("")
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new IdentityRole { Name = "Mentor", NormalizedName = "MENTOR" },
+                new IdentityRole { Name = "User", NormalizedName = "USER" }
+            );
         }
     }
 }
