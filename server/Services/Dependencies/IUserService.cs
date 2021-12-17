@@ -8,5 +8,6 @@ namespace server.Services.Dependencies
 {
     public interface IUserService : IService<ApplicationUser>
     {
+        Task<ApplicationUser> GetAsync(string id);
     }
 }

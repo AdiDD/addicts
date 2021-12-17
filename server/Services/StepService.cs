@@ -40,6 +40,29 @@ namespace server.Services
             return await _db.Steps.FindAsync(id);
         }
 
+        public async Task<Step> PromoteUser(ApplicationUser user)
+        {
+            var steps = (List<Step>) await GetAllAsync();
+            var currentStep = _db.Steps
+                .Where(s => s.Users.Contains(user))
+                .FirstOrDefault();
+            Step nextStep;
+
+            for (int i = 0; i < steps.Count(); i++)
+            {
+                if (steps[i - 1] == currentStep)
+                {
+                    nextStep = currentStep;
+                    currentStep.Users.Remove(user);
+                    nextStep.Users.Add(user);
+                    await _db.SaveChangesAsync();
+                    return nextStep;
+                }
+            }
+
+            return null;
+        }
+
         public async Task RemoveAsync(int id)
         {
             var item = await GetAsync(id);

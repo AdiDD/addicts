@@ -8,5 +8,6 @@ namespace server.Services.Dependencies
 {
     public interface IStepService : IService<Step>
     {
+        Task<Step> PromoteUser(ApplicationUser user);
     }
 }

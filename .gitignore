@@ -928,3 +928,5 @@ FodyWeavers.xsd
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,visualstudio,visualstudiocode,react,aspnetcore,webstorm+all
 
+/server/appsettings.Development.json
+/server/appsettings.json
