@@ -73,5 +73,13 @@ namespace server.Controllers
 
             return StatusCode(201);
         }
+
+        [HttpGet("check-email")]
+        public async Task<ActionResult> CheckEmail(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user != null) return StatusCode(409);
+            return StatusCode(200);
+        }
     }
 }
