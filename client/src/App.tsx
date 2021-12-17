@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import { Navigation } from "./components/navigation";
+import { Header } from "./components/header";
+// import { Features } from "./components/features";
+import { About } from "./components/about";
+import { Services } from "./components/services";
+import { Gallery } from "./components/gallery";
+import { Testimonials } from "./components/testimonials";
+import { Team } from "./components/Team";
+import { Contact } from "./components/contact";
+import JsonData from "./data/data.json";
+// @ts-ignore
+import SmoothScroll from "smooth-scroll";
+import "./App.css";
 
-function App() {
+export const scroll = new SmoothScroll('a[href*="#"]', {
+  speed: 1000,
+  speedAsDuration: true,
+});
+
+const InitialState =  {
+  "Header": "",
+  "About": "",
+  "Services": "",
+  "Gallery": "",
+  "Team": "",
+  "Testimonials": "",
+  "Contact": "",
+}
+
+const App = () => {
+  const [landingPageData, setLandingPageData] = useState(InitialState);
+  useEffect(() => {
+    // @ts-ignore
+    setLandingPageData(JsonData);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link text-3xl font-bold underline"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navigation />
+      <Header data={landingPageData.Header} />
+      {/*<Features data={landingPageData.Features} />*/}
+      <About data={landingPageData.About} />
+      <Services data={landingPageData.Services} />
+      <Gallery data={landingPageData.Gallery}/>
+      <Testimonials data={landingPageData.Testimonials} />
+      <Team data={landingPageData.Team} />
+      <Contact data={landingPageData.Contact} />
     </div>
   );
-}
+};
 
 export default App;
