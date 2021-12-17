@@ -20,14 +20,11 @@ namespace server.Services
 
         public async Task<Post> AddAsync(Post item)
         {
-            if (GetAsync(item.ID) == null)
-            {
-                await _db.Posts.AddAsync(item);
-                await _db.SaveChangesAsync();
-                return item;
-            }
-
-            return null;
+            item.Comments = new List<Comment>();
+            item.UsersThatLiked = new List<ApplicationUser>();
+            await _db.Posts.AddAsync(item);
+            await _db.SaveChangesAsync();
+            return item;
         }
 
         public async Task<IEnumerable<Post>> GetAllAsync()
