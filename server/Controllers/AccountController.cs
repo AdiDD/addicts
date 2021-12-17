@@ -55,7 +55,7 @@ namespace server.Controllers
             { 
                 FirstName = credentialDto.FirstName,
                 LastName = credentialDto.LastName,
-                UserName = credentialDto.FirstName + credentialDto.LastName,
+                UserName = credentialDto.Email,
                 Email = credentialDto.Email 
             };
 
