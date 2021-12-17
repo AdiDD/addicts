@@ -1,0 +1,19 @@
+.mainWrapper {
+  @apply flex max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md fixed bottom-0 m-4 ml-2 hidden z-50;
+}
+
+.messageWrapper {
+  @apply px-4 py-2 -mx-3;
+}
+
+.message {
+  @apply text-sm text-gray-600;
+}
+
+.mainIconWrapper {
+  @apply flex items-center justify-center w-12;
+}
+
+.iconWrapper {
+  @apply justify-self-center w-6 h-6 text-white fill-current text-2xl;
+}
