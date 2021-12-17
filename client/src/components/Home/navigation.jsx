@@ -1,3 +1,9 @@
+// import {Link} from "react-router-dom";
+
+import {openModal} from "../../utils/handleModal";
+// import SignIn from "../../auth/SignIn";
+// import SignUp from "../../auth/SignUp";
+
 export const Navigation = (props) => {
   return (
     <nav id='menu' className='navbar navbar-default navbar-fixed-top'>
@@ -56,13 +62,17 @@ export const Navigation = (props) => {
               </a>
             </li>
             <li>
-              <a href='#contact' className='page-scroll'>
+              <p className='page-scroll' onClick={() => openModal("#signIn")}>
                 Login
-              </a>
+              </p>
             </li>
           </ul>
         </div>
       </div>
+      <div id={"modal-left"} className={"bg-black/80 h-screen fixed left-0 z-50"} />
+      <div id={"modal-right"} className={"bg-black/80 h-screen fixed right-0 z-50"} />
+      {/*<SignIn />*/}
+      {/*<SignUp />*/}
     </nav>
   )
 }
